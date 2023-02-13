@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №6</title>
+</head>
+
+<body>
+	<h1>Задача №6</h1>
+	<p>З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та
+		загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.</p>
+	<script>
+		// 1. Вводимо необхідні данні
+		let firstItemPrice = parseFloat(prompt('Введіть вартість першого товару', '100'))
+		let firstItemQuantity = parseFloat(prompt('Введіть кількість першого товару', '2'))
+		let secondItemPrice = parseFloat(prompt('Введіть вартість другого товару', '200'))
+		let secondItemQuantity = parseFloat(prompt('Введіть кількість другого товару', '1'))
+		let thirdItemPrice = parseFloat(prompt('Введіть вартість третього товару', '300'))
+		let thirdItemQuantity = parseFloat(prompt('Введіть кількість третього товару', '3'))
+
+		// 2. Пошук результату
+		let firstItemTotal = firstItemPrice * firstItemQuantity
+		let secondItemTotal = secondItemPrice * secondItemQuantity
+		let thirdItemTotal = thirdItemPrice * thirdItemQuantity
+		let totalCost = firstItemTotal + secondItemTotal + thirdItemTotal
+
+		// 3. Результат
+		document.write(`
+		<table>
+				<tr>
+					<th>Назва товару</th>
+					<th>Вартість товару</th>
+					<th>Кількість товару</th>
+					<th>Загальна вартість</th>
+				</tr>
+				<tr>
+					<td>Лимон</td>
+					<td>${firstItemPrice}</td>
+					<td>${firstItemQuantity}</td>
+					<td>${firstItemTotal}</td>
+				</tr>
+				<tr>
+					<td>Апельсин</td>
+					<td>${secondItemPrice}</td>
+					<td>${secondItemQuantity}</td>
+					<td>${secondItemTotal}</td>
+				</tr>
+				<tr>
+					<td>Киви</td>
+					<td>${thirdItemPrice}</td>
+					<td>${thirdItemQuantity}</td>
+					<td>${thirdItemTotal}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Разом:</td>
+					<td>${totalCost}</td>
+				</tr>
+				<h2><a href="../index.html">Назад</a></h2>
+		`)
+	</script>
+</body>
+
+</html>

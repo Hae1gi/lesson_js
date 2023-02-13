@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №24</title>
+</head>
+
+<body>
+	<h1>Задача №24</h1>
+	<p>Зашифрувати один введений англійський символ у верхньому регістрі (один з символів: A,B,…Z) методом зміщення
+		(шифр Цезаря)</p>
+	<script>
+		// 1. Вводимо необхідні данні
+		let sumbolUserEntered = prompt('Введіть символ у верхньому регістрі', 'A')
+		let offsetStepUserEntered = parseInt(prompt('Введіть крок зміщення', '3'))
+
+		// 2. Пошук результату
+		let userSumbolUnicode = sumbolUserEntered.charCodeAt()
+		let userSumbolInToNumber = Number(userSumbolUnicode)
+		let chiher = userSumbolUnicode + offsetStepUserEntered
+		let userSumbolChifer = String.fromCharCode(chiher)
+
+
+		// 3. Результат
+		document.write(`
+		Початковий символ: ${sumbolUserEntered}
+		Крок шифру: ${offsetStepUserEntered}
+		Зашифрованний символ: ${userSumbolChifer} <br>
+		Примітка: <br>
+		Не працює як повинно, зміщувать зміщює, але виходить за межі алфавіту A-Z. Тому коли вводишь з клавіатури Z та крок 3 - мае бути B<br>
+		А воно видає наступний символ у таблиці Юнікоду.<br>
+		Думаю що мабуть масивом це має працюватиме краще. <br>
+		Буду вдячний за детальний розбір цього завдання. <br>
+		Дякую. <br>
+		<h2><a href="../index.html">Назад</a></h2>
+		`)
+
+	</script>
+</body>
+
+</html>

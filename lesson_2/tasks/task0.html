@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №0</title>
+</head>
+
+<body>
+	<h1>Задача №0</h1>
+	<p>Обчислити значення виразів:</p>
+	<ul>
+		<li>1) S1=a+12+b</li>
+		<li>2) S2=&radic;((a+b)/2*a)</li>
+		<li>3) S3=&radic;&sup3;(a+b)*c</li>
+		<li>4) S4=sin⁡(a/-b)</li>
+	</ul>
+
+	<script>
+		// 1. Вводимо необхідні данні
+		let a = parseFloat(prompt('Значення a', '8'))
+		let b = parseFloat(prompt('Значення b', '6'))
+		let c = parseFloat(prompt('Значення c', '3'))
+
+		// 2. Пошук результату
+		let S1 = a + 12 + b
+		let S2 = Math.sqrt((a + b) / (2 * a))
+		let S3 = Math.cbrt((a + b) * c)
+		let S4 = Math.sin(a / -b)
+
+		// 3. Результат
+		document.write(`
+			<table border="1px">
+				<tr>
+					<th>Значення</th>
+					<th>Результат</th>
+				</tr>
+				<tr>
+					<th>S1</th>
+					<th>${S1}</th>
+				</tr>
+				<tr>
+					<th>S2</th>
+					<th>${S2.toFixed(2)}</th>
+				</tr>
+				<tr>
+					<th>S3</th>
+					<th>${S3.toFixed(4)}</th>
+				</tr>
+				<tr>
+					<th>S4</th>
+					<th>${S4.toFixed(4)}</th>
+				</tr>
+				<h2><a href="../index.html">Назад</a></h2>
+				`)
+	</script>
+</body>
+
+</html>
