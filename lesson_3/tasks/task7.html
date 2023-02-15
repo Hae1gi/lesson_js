@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №7</title>
+</head>
+
+<body>
+	<h1>Задача №7</h1>
+	<p>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься
+	</p>
+	<script>
+		// 1. Вводимо необхідні данні
+		let mountNumberUserEntered = parseInt(prompt('Введіть номер місяця від 1 до 12', '3'))
+		const WINTER_MOUNT = 2
+		const SPRING_MOUNT = 5
+		const SUMMER_MOUTH = 8
+		const FALL_MOUTH = 11
+		// Чомусь те що я зробив дуже схоже на костыль..
+
+		// 2. Пошук результату
+		if (mountNumberUserEntered <= WINTER_MOUNT)
+			document.write(`Це зимня пора року`)
+		else if (mountNumberUserEntered <= SPRING_MOUNT)
+			document.write(`Це весіння пора року`)
+		else if (mountNumberUserEntered <= SUMMER_MOUTH)
+			document.write(`Це літня пора року`)
+		else if (mountNumberUserEntered <= FALL_MOUTH)
+			document.write(`Це осіння пора року`)
+		else document.write(`Це зимня пора року`)
+
+
+
+	</script>
+</body>
+
+</html>
