@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №2</title>
+</head>
+
+<body>
+	<h1>Задача №2</h1>
+	<p>З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше,
+		якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.</p>
+	<script>
+		// 1. Вводимо необхідні данні
+		let priceOfTheProduct = parseFloat(prompt(`Введіть вартість товару`, '5.20'))
+		let amountOfMoney = parseFloat(prompt(`Введіть кількість грошей на рахунку`, '10'))
+		const LOTTERY_TICKET_PRICE = 4
+
+
+
+		// 2. Пошук результату 
+		let quantityOfGoods = Math.floor(amountOfMoney / priceOfTheProduct)
+		let accountBalance = amountOfMoney % priceOfTheProduct
+		
+		if (accountBalance >= LOTTERY_TICKET_PRICE)
+			document.write(`Кількість придбаного товару ${quantityOfGoods} <br> Залишок на балансі: ${accountBalance.toFixed(2)} грн <br> О у Вас вистачає грошей придбати лотерейний квиток за ${LOTTERY_TICKET_PRICE} грн`)
+		else
+			document.write(`Кількість придбаного товару ${quantityOfGoods} <br> Залишок на балансі: ${accountBalance.toFixed(2)} грн <br>`)
+
+
+	</script>
+</body>
+
+</html>
