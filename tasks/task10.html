@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №10</title>
+  </head>
+
+  <body>
+    <h1>Задача №10</h1>
+    <p>
+      Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем
+      числами.
+    </p>
+    <script>
+      // 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+      let firstNumberUser = parseInt(prompt('Введіть перше число', '0'))
+      let secondNumberUser = parseInt(
+        prompt('Введіть друге число, яке більше за перше', '0')
+      )
+      let oddSum = 0
+
+      if (firstNumberUser > secondNumberUser) {
+        let temporary = secondNumberUser
+        secondNumberUser = firstNumberUser
+        firstNumberUser = temporary
+      }
+
+      for (
+        let initialValue = firstNumberUser;
+        initialValue <= secondNumberUser;
+        initialValue++
+      ) {
+        if (initialValue % 2 !== 0) oddSum += initialValue
+      }
+      document.write(
+        `В заданому діапазоні від ${firstNumberUser} до ${secondNumberUser} сумма непарних числе дорівнює ${oddSum}`
+      )
+
+      // 2. Пошук результату та його вивід
+    </script>
+  </body>
+</html>

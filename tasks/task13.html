@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача №13</title>
+</head>
+
+<body>
+	<h1>Задача №13</h1>
+	<p>Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів користувач намагається потопити корабель. 
+	</p>
+
+	</li>
+	<script>
+		// 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+		const SIZE_FIELD_X = parseInt(prompt('Введіть розміри поля по Х'))
+		const SIZE_FIELD_Y = parseInt(prompt('Введіть розміри поля по Y'))
+		// Пошук координат корабля 
+		const SHIP_COORDINATES_X = 1 + Math.floor(Math.random() * SIZE_FIELD_X)
+		const SHIP_COORDINATES_Y = 1 + Math.floor(Math.random() * SIZE_FIELD_Y)
+		// Кількість спробо
+		const NUMBER_OF_SHOTS = parseInt(prompt('Введіть кількість спроб'))
+		console.log(SHIP_COORDINATES_X)
+		console.log(SHIP_COORDINATES_Y)
+		let result
+      // 2. Пошук результату 
+		for (let x = 0; x < NUMBER_OF_SHOTS; x++) {
+			let xShot = parseInt(prompt(`Введіть координати пострілу по Х від 1 до ${SIZE_FIELD_X}`))
+			let yShot = parseInt(prompt(`Введіть координати пострілу по Y від 1 до ${SIZE_FIELD_Y}`))
+			if (xShot === SHIP_COORDINATES_X && yShot === SHIP_COORDINATES_Y) 
+			 {	alert (`Точно в ціль`)
+				result = `Вдалось влучити з ${x+1}`
+			 break}
+			 else {
+			 alert (`Мимо, осталось еще ${NUMBER_OF_SHOTS-x-1} выстрелов`)
+			 result = `за ${NUMBER_OF_SHOTS} спроб корабель не було потоплено`}
+		}
+		
+		// 3. Вивід результату
+		document.write(`
+		Поле розміром: <br>
+		 ${SIZE_FIELD_X} по Х <br>
+		 ${SIZE_FIELD_Y} по Y <br>
+		Корабль знаходився за заданими координатами: <br>
+		 ${SHIP_COORDINATES_X} по Х <br> 
+		 ${SHIP_COORDINATES_Y} по Y <br>
+		 ${result}`)
+	</script>
+</body>
+
+</html>
