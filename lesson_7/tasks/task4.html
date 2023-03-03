@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>Задача №4</h1>
+    <p>
+      Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька
+      результатів: кількість парних, кількість додатних, кількість більших за
+      100.
+    </p>
+    <script>
+      // 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+      const USER_NUM_1 = parseFloat(prompt('Введіть перше число', '3'))
+      const USER_NUM_2 = parseFloat(prompt('Введіть друге число', '-2'))
+      const USER_NUM_3 = parseFloat(prompt('Введіть третє число', '101'))
+
+      //Функція яка виявляє кількість парних
+      // function getDoubleNumber(x1, x2, x3) {
+      //   let counter = 0
+      //   for (let i = 0; i < 3; i++) {
+      //     if (arguments[i] % 2 === 0) counter++
+      //   }
+      //   return counter
+      // }
+      // //Функція яка виявляє кількість додатніх
+      // function getPositiveNumber(x1, x2, x3) {
+      //   let counter = 0
+      //   for (let i = 0; i < 3; i++) {
+      //     if (arguments[i] > 0) counter++
+      //   }
+      //   return counter
+      // }
+      // //Функція яка виявляє кількість чисел більших за 100
+      // function getBiggets100Number(x1, x2, x3) {
+      //   let counter = 0
+      //   for (let i = 0; i < 3; i++) {
+      //     if (arguments[i] > 100) counter++
+      //   }
+      //   return counter
+      // }
+
+
+
+		
+      // Функція яка повертає 3 результати
+      function getThreeResult(x1, x2, x3) {
+        let dubleNumber = 0
+        let positiveNumber = 0
+        let biggets100Number = 0
+        for (let i = 0; i < 3; i++) {
+          if (arguments[i] % 2 === 0) dubleNumber += 1
+          if (arguments[i] > 0) positiveNumber += 1
+          if (arguments[i] > 100) biggets100Number += 1
+        }
+        let message = `Кількість парних чисел: ${dubleNumber} <br>
+      			Кількість додатніх чисел: ${positiveNumber} <br>
+     			 Кількість більших за 100 чисел: ${biggets100Number} <br>`
+
+        return message
+      }
+      document.write(`${getThreeResult(USER_NUM_1, USER_NUM_2, USER_NUM_3)}`)
+
+      // 2. Пошук результату та його вивід
+    </script>
+  </body>
+</html>

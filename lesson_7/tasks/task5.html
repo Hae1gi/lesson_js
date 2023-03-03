@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>Задача №5</h1>
+    <p>Створити окремі функції, які переводять:</p>
+    <ol>
+      <li>Сантиметри у дюйми;</li>
+      <li>Кілограми у фунти;</li>
+      <li>Кілометри у милі.</li>
+    </ol>
+    <script>
+      // 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+      const USER_CENTIMETER = parseFloat(
+        prompt(
+          'Введіть кількість сантиметрів які необхідно перевести в дюйми',
+          '3'
+        )
+      )
+      const USER_KILOGRAM = parseFloat(
+        prompt(
+          'Введіть кількість кілограмів які необхідно перевести в фунти',
+          '22'
+        )
+      )
+      const USER_KILOMETER = parseFloat(
+        prompt(
+          'Введіть кількість кілометрів які необхідно перевести в милі',
+          '101'
+        )
+      )
+
+      // Функція яка перетворює сантиметри у дюйми
+      function getCentimeterToInches(centimeters) {
+        const INCHES = 2.54
+        return centimeters / INCHES
+      }
+      // Функція яка перетворює сантиметри у дюйми
+      function getKilogramToPound(kilogram) {
+        const POUND = 0.453
+        return kilogram / POUND
+      }
+      // Функція яка перетворює кілометри у метри
+      function getKilometerToMiles(kilometer) {
+        const MILES = 1.61
+        return kilometer / MILES
+      }
+      let inches = getCentimeterToInches(USER_CENTIMETER)
+      let pound = getKilogramToPound(USER_KILOGRAM)
+      let miles = getKilometerToMiles(USER_KILOMETER)
+
+      document.write(
+        `${USER_CENTIMETER} см = ${inches.toFixed(2)} дюймов <br>
+		  ${USER_KILOGRAM} кг = ${pound.toFixed(2)} фунтов <br>
+		   ${USER_KILOMETER} км = ${miles.toFixed(2)} миль <br>`
+      )
+      //2. Пошук результату та його вивід
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №0</title>
+  </head>
+
+  <body>
+    <h1>Задача №0</h1>
+    <p>
+      Створити функцію, яка за номером місяця повертає пору року, до якої
+      відноситься цей місяць.
+    </p>
+    <script>
+      // 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+      let userNumberMonth = parseInt(prompt('Введіть номер місяця'))
+      // Функція пошуку результату (Шукає пору року за номером місяця)
+      function getTimeOfYear(monthNumber) {
+        switch (monthNumber) {
+          case 12:
+          case 1:
+          case 2:
+            return `Це зима`
+          case 3:
+          case 4:
+          case 5:
+            return `Це весна`
+          case 6:
+          case 7:
+          case 8:
+            return `Це літо`
+          case 9:
+          case 10:
+          case 11:
+            return `Це осінь`
+
+          default:
+            return `Такого місяця немає`
+        }
+      }
+      // 2. Виводимо результат застосовуючи функцію
+      document.write(`${getTimeOfYear(userNumberMonth)}`)
+    </script>
+  </body>
+</html>

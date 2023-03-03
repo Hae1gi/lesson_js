@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>Задача №1</h1>
+    <p>Створити функцію, яка за номером місяця повертає його назву.</p>
+    <script>
+      let userNumberMonth = parseInt(prompt('Введіть номер місяця'))
+      // Функція пошуку результату (Шукає назву місяця за його номером)
+      function getNameTimeOfYear(monthNumber) {
+        switch (monthNumber) {
+          case 1:
+            return `січень`
+          case 2:
+            return `лютий`
+          case 3:
+            return `березень`
+          case 4:
+            return `квітень`
+          case 5:
+            return `травень`
+          case 6:
+            return `червень`
+          case 7:
+            return `липень`
+          case 8:
+            return `серпень`
+          case 9:
+            return `вересень`
+          case 10:
+            return `жовтень`
+          case 11:
+            return `листопад`
+          case 12:
+            return `грудень`
+          default:
+            return `Назви у цього місяця немає`
+        }
+      }
+      // 2. Виводимо результат застосовуючи функцію
+      document.write(`Це ${getNameTimeOfYear(userNumberMonth)}`)
+    </script>
+  </body>
+</html>

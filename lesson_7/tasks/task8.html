@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №8</title>
+  </head>
+
+  <body>
+    <h1>Задача №8</h1>
+    <p>
+      Створити функцію, яка виводить банер (у функцію передаються: зображення,
+      заголовок та посилання, куди переходимо при кліку на зображення (тег img
+      повине знаходитись у середині тега a)
+    </p>
+
+    <script>
+      // 0. Позначення
+      // 1. Вводимо необхідні данні (змінні, константи)
+      function getBanner(title, link, pathImg) {
+        return `<h1>${title}</h1><a href="${link}"><img src="${pathImg}"></a>`
+      }
+      const userTitle = prompt('Введіть заголовок', 'Я заголовок')
+      const userLink = prompt(
+        'Введіть посилання куди необхідно переходити',
+        'https://www.google.com.ua/'
+      )
+      const userImg = prompt(
+        'Введіть посилання на картинку',
+        'https://habrastorage.org/webt/ab/sl/bt/abslbtgj10nk62g7ksdlx0lusck.png'
+      )
+      let result = getBanner(userTitle, userLink, userImg)
+      // 2. Пошук результату та його вивід
+      document.write(result)
+    </script>
+  </body>
+</html>
