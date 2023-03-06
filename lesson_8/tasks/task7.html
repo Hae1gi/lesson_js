@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №7</title>
+  </head>
+
+  <body>
+    <h1>Задача №7</h1>
+    <p>
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей
+      за:
+    </p>
+    <ol>
+      <li>за весь рік (1-12);</li>
+      <li>у першій половині року (1-6);</li>
+      <li>у другій половині року (7-12);</li>
+      <li>за літо (6-8);</li>
+      <li>за ІІ квартал (4-6);</li>
+      <li>за парні місяці (з парними номерами) (2,4,6,8,10,12);</li>
+      <li>
+        за місяці, які є початковими у сезоні (весна, літо, осінь, зима)
+        (3,6,9,12).
+      </li>
+    </ol>
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція пошуку результату додавання
+      function getSum(array) {
+        let result = 0
+        for (let i = 0; i < arguments.length; i++) {
+          result += arguments[i]
+        }
+        return result
+      }
+      // Функція визначення які саме номери місяців знаходяться у заданому діапазоні
+      function getMount(minV, maxV, dataArray, step = 0) {
+        let result = []
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dataArray[i] >= minV && dataArray[i] <= maxV) {
+            i += step
+            result.push(dataArray[i])
+          }
+        }
+        return result
+      }
+      // Функція знаходження необхідних значень
+      function getResult(dataArrayIndex, dataArrayMeaning) {
+        let result = []
+        for (let i = 0; i < dataArrayIndex.length; i++) {
+          result.push(dataArrayMeaning[dataArrayIndex[i]])
+        }
+        return result
+      }
+
+      // ===================================================================================//
+      // Формування платіжок за рік
+      const mounth = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+      const year = 12
+      let payments = new Array(year)
+      for (let i = 0; i < year; i++) {
+        minV = 100
+        maxV = 500
+        let randPayments = minV + Math.floor(Math.random() * (maxV - minV + 1))
+        payments[i] = randPayments
+      }
+
+      // ===================================================================================//
+
+      // Формування результату
+      let resultAllYear = getSum(...payments)
+      let resultFirstSixMount = getSum(
+        ...getResult(getMount(0, 5, mounth), payments)
+      )
+      let resultSecondSixMount = getSum(
+        ...getResult(getMount(6, 11, mounth), payments)
+      )
+      let resultSummerMount = getSum(
+        ...getResult(getMount(5, 7, mounth), payments)
+      )
+      let resultSecondQuarterMount = getSum(
+        ...getResult(getMount(3, 5, mounth), payments)
+      )
+      let resultEvenMount = getSum(
+        ...getResult(getMount(0, 11, mounth, 1), payments)
+      )
+      let resultFirstMountSeason = getSum(
+        ...getResult(getMount(0, 11, mounth, 2), payments)
+      )
+      // ===================================================================================//
+      // Виведення результату
+      document.write(`<p> Платіжки за місяці (1-12): ${payments}
+						 <ol>
+		                <li>за весь рік: ${resultAllYear}</li>
+                      <li>у першій половині року: ${resultFirstSixMount}</li>
+                      <li>у другій половині року: ${resultSecondSixMount}</li>
+                      <li>за літо: ${resultSummerMount}</li>
+                      <li>за ІІ квартал: ${resultSecondQuarterMount}</li>
+                      <li>за парні місяці (з парними номерами): ${resultEvenMount}</li>
+                      <li> за місяці, які є початковими у сезоні (весна, літо, осінь, зима): ${resultFirstMountSeason}</li> 
+                  </ol>`)
+      // ===================================================================================//
+      // Службові замітки
+      // console.log(resultAllYear)
+      // console.log(resultFirstSixMount)
+      // console.log(resultSecondSixMount)
+      // console.log(resultSummerMount)
+      // console.log(resultSecondQuarterMount)
+      // console.log(resultEvenMount)
+      // console.log(resultFirstMountSeason)
+
+      //  let payments = [
+      //   //  0   1    2    3    4    5    6     7   8    9   10    11
+      //   // Cіч,Лют, Бер, Кв, Трав, Чер, Лип, Серп,Вер, Жов, Лис, Груд
+      //     100, 100, 100, 100, 100, 100, 200, 200, 200, 200, 200, 200]
+      // // ===          1  2  3  4  5  6  7  8  9 10  11, 12
+      // const mounth = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    </script>
+  </body>
+</html>

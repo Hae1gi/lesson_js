@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №6</title>
+  </head>
+
+  <body>
+    <h1>Задача №6</h1>
+    <p>
+      Дано послідовність цін товарів та назв (у окремих масивах). Вивести на
+      екран ті, які може собі дозволити користувач (кількість грошей задається).
+      Приклад збереження даних
+    </p>
+    <img src="../img/task.jpg" />
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція свторення масиву цін товарів
+      function getProductPrices(quantity) {
+        let result = []
+        const minV = 20
+        const maxV = 1500
+        for (let i = 0; i < quantity; i++) {
+          let randPrices = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          result.push(randPrices)
+        }
+        return result
+      }
+      // Функція створення масиву імен товарів
+      function getProductTitles(dataArray) {
+        let result = []
+        for (let i = 0; i < dataArray.length; i++) {
+          let nameProduct
+          switch (i) {
+            case 0:
+              nameProduct = 'Cheese'
+              break
+            case 1:
+              nameProduct = 'Bread'
+              break
+            case 2:
+              nameProduct = 'Pear'
+              break
+            case 3:
+              nameProduct = 'Cherry'
+              break
+            case 4:
+              nameProduct = 'Strawberry'
+              break
+            case 5:
+              nameProduct = 'Apple'
+              break
+            default:
+              nameProduct = 'Pasta'
+              break
+          }
+          result.push(nameProduct)
+        }
+        return result
+      }
+      // Функція визначення на що вистачає користувачу грошей
+      function getHowMuchProductEnough(dataArray, howMuchMoney) {
+        let resultHowMuch = []
+        let numberPosition = []
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dataArray[i] <= howMuchMoney) resultHowMuch.push(dataArray[i])
+        }
+        return resultHowMuch
+      }
+      // ===================================================================================//
+      // Формування масиву цін
+      const quantityProduct = 7
+      let productPrices = getProductPrices(quantityProduct)
+      // Введення кількості грошей
+      const userMoney = parseFloat(prompt('Введіть кількість грошей на балансі (до 1500 грн)'))
+      // ===================================================================================//
+      // Формую результат
+      let howMuchProductEnough = getHowMuchProductEnough(
+        productPrices,
+        userMoney
+      )
+		// Формування масиву імен
+		// !!!!!! Трішки не зрозумів як саме прив'язати конкретну назву до конректного товару :/ Щоб виводило не по порядку
+		// !!!!!! назву а саме ту до якої відносилось при першій генерації. 
+		// !!!!!! Намагався return два результати з getHowMuchProductEnough (два массиву в одному саме ціни, в другому номер позиції)
+		// !!!!!! Але вірно застосувати номер позиції якії отримав не зміг
+      let productTitlesEnough = getProductTitles(howMuchProductEnough)
+      // ===================================================================================//
+      // Виводжу результат на экран
+      document.write(
+        `<p>Користувач на ${userMoney} грн може дозволити собі наступні товари:</p>
+		  <p>${howMuchProductEnough}</p>
+		  <p>${productTitlesEnough}</p>`
+      )
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

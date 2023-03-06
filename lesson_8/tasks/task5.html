@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>Задача №5</h1>
+    <p>Дано послідовність оцінок учня. Підрахувати кількість:</p>
+    <ol>
+      <li>двійок</li>
+      <li>кількість хороших оцінок (добре, відмінно);</li>
+      <li>кількість оцінок, які нижче середнього.</li>
+    </ol>
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації оцінок учня
+      function getStudentScore(quantity) {
+        let result = []
+        for (let i = 0; i < quantity; i++) {
+          let randScore = 1 + Math.floor(Math.random() * 5)
+          result.push(randScore)
+        }
+        return result
+      }
+      // Функція визначення кількості двійок, кількості хороших оцінок, нижче середнього
+      function getScoreResult(dataArray) {
+        let result = []
+        let badScore = 0
+        let goodScore = 0
+        let lowScore = 0
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dataArray[i] === 2) badScore++ // Кількість двійок
+          if (dataArray[i] === 4 || dataArray[i] === 5) goodScore++ // Кількість гарних оцінок
+          if (dataArray[i] === 1 || dataArray[i] === 2 || dataArray[i] === 3)
+            // Кількість оцінок нижче середньго
+            lowScore++
+        }
+        result.push(badScore, goodScore, lowScore)
+        return result
+      }
+      // ===================================================================================//
+      // Вводимо кількість предметів з яких маємо отримати оцінку
+      const userNumberOfSubjects = parseInt(
+        prompt('Введіть кількість предметів')
+      )
+      // Массив з оцінками
+      const scoreUserArr = getStudentScore(userNumberOfSubjects)
+      // ===================================================================================//
+      // Визначаємо успішність учня
+      const studentSuccess = getScoreResult(scoreUserArr)
+      // ===================================================================================//
+      // Виводимо результат
+      document.write(`Загальні оцінки студента: ${scoreUserArr}
+							<ol>
+   					   <li>двійок: ${studentSuccess[0]}</li>
+     						<li>кількість хороших оцінок (добре, відмінно): ${studentSuccess[1]}</li>
+      					<li>кількість оцінок, які нижче середнього ${studentSuccess[2]}</li>
+    						</ol>`)
+    </script>
+  </body>
+</html>

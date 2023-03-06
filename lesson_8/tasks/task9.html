@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №9</title>
+  </head>
+
+  <body>
+    <h1>Задача №9</h1>
+    <p>
+      Морський бій. Користувач вводить кількість клітинок одновимірного масиву
+      та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні
+      кораблі у масиві по один у клітинці якщо у клітинці 0, то клітинка пуста,
+      якщо 1 – то це означає, що там є корабель. Користувач вводить номер
+      клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть
+      потоплені усі кораблі.
+    </p>
+    <script>
+      // ===================================================================================//
+      // Довгень сидів над задачею, були спроби оптимізації, але нажаль натикав костилів..
+      // Буду вдячний за детальний розбір цієї задачі на уроці, дякую!
+      // ===================================================================================//
+      // Функції
+      // Функція формування поля
+      function getFieldShips(numOfShips, numOfCell) {
+        let fieldShips = new Array(numOfCell)
+        // Кількість спроб
+        let counterNumberOfAttempts = numOfCell
+        for (let i = 0; i < numOfCell; i++) {
+          let randNum = Math.floor(Math.random() * 2)
+          // Оголошуємо початкову кількість кораблів
+          let counterShips = numOfShips
+          //Перевіряємо кількість одиниць в массиві
+          let quanityShipsInArray = getQuanityShips(fieldShips) // Кількість одиниць у масиві
+          //Перевіріяємо яка кількість спроб залишилась спроб, якщо залишилось меньше ніж кількість кораблів додаємо корабель
+          counterShips -= quanityShipsInArray // Кількість необхідних нам ще кораблів
+          if (counterNumberOfAttempts <= counterShips) fieldShips[i] = 1
+          // Якщо кількість клітино <= кількості необхідних корбблів тоді = корабель
+          else if (quanityShipsInArray === numOfShips) fieldShips[i] = 0
+          // Інакше кількість кораблей у масиві вже дорівнює необіхдній кількості тоді нема корабля
+          else fieldShips[i] = randNum // Якщо попередні умови не виконались додаємо випадкове число
+          //Віднімаємо спробу
+          counterNumberOfAttempts -= 1
+        }
+        return fieldShips
+      }
+      // Функція перевірки наявності кораблів в масиві
+      function isThereAShips(arrayfield, numberShip) {
+        let result
+        for (let i = 0; i < arrayfield.length; i++) {
+          if (arrayfield[i] === 1) result = true
+          else result = false
+        }
+        return result
+      }
+      // Функція перевірки кількості кораблів в масиві
+      function getQuanityShips(arrayfield) {
+        let counter
+        for (let i = 0; i < arrayfield.length; i++) {
+          if (arrayfield[i] === 1) counter++
+        }
+        return counter
+      }
+      // ===================================================================================//
+      // Формування масиву з корабликами
+      // Користувач вводить данні
+      const numberOfShips = parseInt(prompt('Введіть кількість кораблів'))
+      const numberOfCellsForTheShip = parseInt(
+        prompt(
+          `Введіть кількість клітинок де розмістяться кораблі, але не менше за ${numberOfShips}`
+        )
+      )
+      // Отримуємо масив
+      let fieldShips = getFieldShips(numberOfShips, numberOfCellsForTheShip)
+      let thereAShips
+      // Спроби користувача потопити кораблі
+      do {
+        let userShotAttempt = parseInt(
+          prompt(
+            `Введіть номер клітинки де може знаходитися корабель від 0 до ${
+              numberOfCellsForTheShip - 1
+            }`
+          )
+        )
+        if (fieldShips[userShotAttempt] === 1) {
+          alert('Влучання')
+          fieldShips[userShotAttempt] = 0
+        } else alert('Промазав')
+        thereAShips = isThereAShips(fieldShips, 1)
+      } while (thereAShips)
+      // ===================================================================================//
+      // Виводжу на екран
+      console.log(fieldShips)
+      document.write(`Усі кораблі потоплені`)
+
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

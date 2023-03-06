@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h1>Задача №1</h1>
+    <p>
+      Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+      з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+      хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча
+      би одна трійка)).
+    </p>
+    <script>
+      // ===================================================================================//
+      // ФУНКЦІЇ
+      // - Функція яка визначає мінімальну оцінку в массиві
+      function getMinScore(arrScore) {
+        let minScore = arrScore[0]
+        for (let i = 0; i < arrScore.length; i++) {
+          if (minScore > arrScore[i]) minScore = arrScore[i]
+        }
+        return minScore
+      }
+      // - Функція з визначення до якої категорії відноситься учень
+      function getCategoryStudent(minScore) {
+        // Передаю мінімальну оцінку
+        let result
+        switch (
+          minScore // Визначаю категорю
+        ) {
+          case 2:
+            result = `Двійочник`
+            break
+          case 3:
+            result = `Трійочник`
+            break
+          case 4:
+            result = `Хорошист`
+            break
+          default:
+            result = `Відмінник`
+        }
+        return result
+      }
+      // -Функція з визначення середнього балу
+      function getAverageScoreStudent(arrScore) {
+        // Передаю массив
+        let sumAverageScore = 0
+        for (let i = 0; i < arrScore.length - 1; i++) {
+          // Віднімаю від довжини масиву 1 щоб NaN не брав участь у обчисленні
+          sumAverageScore += arrScore[i] // Додаю всі числа за масиву один до одного
+        }
+        return sumAverageScore / (arrScore.length - 1) // Повертаю середні значення: додані числа ділю на довжину массиву (за мінусом NaN)
+      }
+      // ===================================================================================//
+      // ВВІД ДАННИХ КОРИСТУВАЧЕМ
+      // цикл з визначення оцінок
+      let estimatesUserEntered = 0
+      let estimatesUserArr = [] // Массив данних з оцінками
+      /* ==== do while ? Немного не понял как не пушить NaN в массив.. ==== */
+      for (let i = 1; !isNaN(estimatesUserEntered); i++) {
+        estimatesUserEntered = parseInt(
+          prompt(`Введіть оцінку з ${i} предмету`)
+        )
+        estimatesUserArr.push(estimatesUserEntered)
+      }
+      // ===================================================================================//
+      // ФОРМУЮ РЕЗУЛЬТАТ
+      let minScore = getMinScore(estimatesUserArr)
+      let categoryStudent = getCategoryStudent(minScore)
+      let averageScoreStudent = getAverageScoreStudent(estimatesUserArr)
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН
+      document.write(
+        `${averageScoreStudent.toFixed(2)} cередній бал. ${categoryStudent}`
+      )
+      // ===================================================================================//
+
+      // Об'єднанна функція визначення мімальної оцінки та категорії
+      // function getCategoryStudent(arrScore) {
+      //   let minScore = arrScore[0]
+      //   let result
+      //   for (let i = 0; i < arrScore.length; i++) {
+      //     if (minScore > arrScore[i]) minScore = arrScore[i]
+      //   }
+      //   switch (minScore) {
+      //     case 1:
+      //       result = `Двійочник`
+      //       break
+      //     case 2:
+      //       result = `Двійочник`
+      //       break
+      //     case 3:
+      //       result = `Трійочник`
+      //       break
+      //     case 4:
+      //       result = `Хорошист`
+      //       break
+      //     default:
+      //       result = `Відмінник`
+      //       break
+      //   }
+      //   return result
+      // }
+    </script>
+  </body>
+</html>

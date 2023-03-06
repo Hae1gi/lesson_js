@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <h1>Задача №2</h1>
+    <p>
+      Дано масив, який зберігає кількість відвідувачів магазину протягом тижня.
+      Вивести на екран:
+    </p>
+    <ul>
+      <li>
+        номери днів, протягом яких кількість відвідувачів була меншою за 20;
+      </li>
+      <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+      <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+      <li>
+        загальну кількість клієнтів у робочі дні та окремо загальну кількість
+        днів на вихідних.
+      </li>
+    </ul>
+    <script>
+      // ===================================================================================//
+      // Функції
+
+      function getDayOfVisitorsLow20(dataArray, visitors) {
+        let numberDaylowVisits = []
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dataArray[i] < visitors) numberDaylowVisits.push(i + 1)
+        }
+        return numberDaylowVisits
+      }
+      // Функція визначення коли кількість відвідувачів була мінімальною
+      // Визначаю мінімальне значення:
+      function getMinValue(dataArray) {
+        let minVisitsDay = dataArray[0]
+        for (let i = 1; i <= dataArray.length; i++) {
+          if (minVisitsDay > dataArray[i]) minVisitsDay = dataArray[i]
+        }
+        return minVisitsDay
+      }
+      // Визначаю в які саме дні тижня відвідувачів було найменше
+      function getDayOfMinVisitis(dataArray) {
+        let minValue = getMinValue(dataArray)
+        let minDayVisits = []
+        for (let i = 0; i < dataArray.length; i++) {
+          if (minValue === dataArray[i]) minDayVisits.push(i + 1)
+        }
+        return minDayVisits
+      }
+      // Функція визначення коли кількість відвідувачів була максимальною
+      // Визначаю максимальне значення:
+      function getMaxValue(dataArray) {
+        let maxVisitsDay = dataArray[0]
+        for (let i = 1; i <= dataArray.length; i++) {
+          if (maxVisitsDay < dataArray[i]) maxVisitsDay = dataArray[i]
+        }
+        return maxVisitsDay
+      }
+      // Визначаю в які саме дні тижня відвідувачів було найбільше
+      function getDayOfMaxVisits(dataArray) {
+        let maxValue = getMaxValue(dataArray)
+        let maxDayVisits = []
+        for (let i = 0; i < dataArray.length; i++) {
+          if (maxValue === dataArray[i]) maxDayVisits.push(i + 1)
+        }
+        return maxDayVisits
+      }
+      // Функція визначення загальної суми відвідувачів
+      // В робочій день
+      function getSumVisitsWorkDay(dataArray, workDay) {
+        let sumVisits = 0
+        for (let i = 0; i < workDay; i++) {
+          sumVisits += dataArray[i]
+        }
+        return sumVisits
+      }
+      // В вихідний день
+      function getSumVisitsDayOff(dataArray, dayOff) {
+        let sumVisits = 0
+        for (let i = 5; i < dayOff; i++) {
+          sumVisits += dataArray[i]
+        }
+        return sumVisits
+      }
+      // ===================================================================================//
+      // Ввід данних щодо відвідування магазину
+      let arrNumberOfVisitors = new Array(7) // Виділяю пам'ять під 7 значеннь
+      const dayOfWeek = 7 // Константа кількості днів в тижні
+      for (let i = 0; i < dayOfWeek; i++) {
+        arrNumberOfVisitors[i] = parseInt(
+          prompt(`Введіть кількість гостей за ${i + 1} день`, '0')
+        ) // Заповнюю масив данними
+      }
+      // ===================================================================================//
+      // Формую результат
+      let dayOfVisitorsLow20 = getDayOfVisitorsLow20(arrNumberOfVisitors, 20)
+      let dayOfMinVisitis = getDayOfMinVisitis(arrNumberOfVisitors)
+      let dayOfMaxVisits = getDayOfMaxVisits(arrNumberOfVisitors)
+      let sumVisitsWorkDay = getSumVisitsWorkDay(arrNumberOfVisitors, 5)
+      let sumVisitsDayOff = getSumVisitsDayOff(arrNumberOfVisitors, 7)
+      // ===================================================================================//
+      //Вивожу данні
+      document.write(
+        `<p>Протягом тижня в наступні дні кількість відвідувачів була меньшою за 20: ${dayOfVisitorsLow20}</p>
+		  <p>Номери днів, коли кількість відвідувачів була мінімальною: ${dayOfMinVisitis}</p> 
+		  <p>Номери днів, коли кількість відвідувачів була максимальною: ${dayOfMaxVisits}</p> 
+		  <p>Загальна кількість у робочі дні = ${sumVisitsWorkDay} </p>
+		  <p>Загальна кількість у вихідні дні = ${sumVisitsDayOff} </p>`
+      )
+    </script>
+  </body>
+</html>

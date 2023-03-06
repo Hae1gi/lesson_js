@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>Задача №4</h1>
+    <p>
+      Дано послідовність номерів автомобілів. Підрахувати кількість номерів,
+      які:
+    </p>
+    <ul>
+      <li>починаються на букву «А»;</li>
+      <li>перша і остання літери співпадають;</li>
+      <li>складаються з більше ніш 5 символів;</li>
+    </ul>
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція визначення номерів які починаются на задану букву (А)
+      function getStartWithALetter(dataArray) {
+        const letter = 'A' //Задана буква за умовами задачі
+        let counter = 0
+        for (let i = 0; i < dataArray.length; i++) {
+          if (letter === dataArray[i][0]) counter++
+        }
+        return counter
+      }
+      // Функція визначення номерів в яких спіпадає перша та остання літера
+      function getNumberCarMatchesFirstAndLastLetter(dataArray) {
+        let counter = 0
+        for (let i = 0; i < dataArray.length; i++) {
+          let lastLetter = dataArray[i].length - 1 // Трішки не розумію як це саме працює чому саме .length-1
+          if (dataArray[i][0] === dataArray[i][lastLetter]) counter++
+        }
+        return counter
+      }
+      // Функція визначення довжини номерів
+      function getLenghtCarNumber(dataArray) {
+        const fixedLength = 5
+        let counter = 0
+        for (let i = 0; i < dataArray.length; i++) {
+          let lengthCarNumber = dataArray[i].length
+          if (lengthCarNumber >= fixedLength) counter++
+        }
+        return counter
+      }
+      // Функція генерації випадкових номерів автомобілів
+      function getRandomNumberCar(quantity) {
+        let result = []
+        let randNumberCar
+        for (let i = 0; i < quantity; i++) {
+          let randNum = 1 + Math.floor(Math.random() * 5)
+          switch (randNum) {
+            case 1:
+              randNumberCar = 'AA0000AC'
+              break
+            case 2:
+              randNumberCar = 'AA2705CA'
+              break
+            case 3:
+              randNumberCar = 'ВАСЯ'
+              break
+            case 4:
+              randNumberCar = 'KA2102CA'
+              break
+            default:
+              randNumberCar = 'КА1995ВК'
+              break
+          }
+          result.push(randNumberCar)
+        }
+        return result
+      }
+      // ===================================================================================//
+      // Массив номерів автомобілів
+      let quantityNumberCar = parseInt(
+        prompt('Введіть кількість необхідних номерів')
+      )
+      let arrayCarNumber = getRandomNumberCar(quantityNumberCar)
+      // ===================================================================================//
+      // Формую результат
+      let startWithALetter = getStartWithALetter(arrayCarNumber)
+      let lenghtCarNumber = getLenghtCarNumber(arrayCarNumber)
+      let numberCarMatchesFirstAndLastLetter =
+        getNumberCarMatchesFirstAndLastLetter(arrayCarNumber)
+      // ===================================================================================//
+      // Виводжу результат
+      document.write(`<p>Массив автомобільних номерів: ${arrayCarNumber}</p>
+      				<p> Кількість номерів які починаються на А дорівнює: ${startWithALetter}</p>
+      				<p> Кількість номерів в яких співпадаються перша і остання літера: ${numberCarMatchesFirstAndLastLetter}</p>
+      				<p> Кількість номерів в яких більше 5 символів: ${lenghtCarNumber}</p>`)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

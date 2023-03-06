@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №8</title>
+  </head>
+
+  <body>
+    <h1>Задача №8</h1>
+    <p>
+      Дано одновимірний масив, у якому зберігається певна виграшна сума
+      (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </p>
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція збереження в окремий массив результату вводу чисел користувача
+      function getWinSum(dataArrayUserNumber, arrayWithWins) {
+        let sumResult = 0
+        for (let i = 0; i < dataArrayUserNumber.length; i++) {
+          let temp = dataArrayUserNumber[i]
+          let result = arrayWithWins[temp]
+          sumResult += result
+        }
+        return sumResult
+      }
+      // ===================================================================================//
+      // Формування масиву з числами користувача
+      const quantityElements = parseInt(
+        prompt('Введіть кількість номерів під яким буде сховано виграш')
+      )
+      let userArray = []
+      let userNumber = 0
+      for (let i = 0; !isNaN(userNumber); i++) {
+        userNumber = parseInt(
+          prompt(
+            `Введіть номер під яким сховано Ваш виграш від 0 до ${quantityElements}`
+          )
+        )
+        if (isNaN(userNumber)) break
+        userArray.push(userNumber)
+      }
+      // Формування масиву з вигращем
+      // let winArr = [-500, -400, -300, -200, -100, 0, 100, 200, 300, 400, 500]
+      let winArr = new Array(quantityElements)
+      for (let i = 0; i < quantityElements; i++) {
+        const minV = -500
+        const maxV = 500
+        let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+        winArr[i] = randNum
+      }
+
+      // ===================================================================================//
+      // Формую результат
+      let userWinSum = getWinSum(userArray, winArr)
+      // ===================================================================================//
+      // Виведення результату
+      document.write(`Ваш виграш складає: ${userWinSum}`)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>
