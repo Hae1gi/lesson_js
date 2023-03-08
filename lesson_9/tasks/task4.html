@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h1>Задача №4</h1>
+    <p>Дано масив елементів. Вивести на екран елементи, що більші за 100</p>
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації масииву
+      function getRandomArray(minV, maxV, lengthArray) {
+        let resultArray = new Array(lengthArray)
+        for (let i = 0; i < lengthArray; i++) {
+          let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          resultArray[i] = randNum
+        }
+        return resultArray
+      }
+
+      // ===================================================================================//
+      // ВВІД ДАННИХ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getRandomArray(50, 150, userArrayLength)
+      // ===================================================================================//
+      // Формування результату та вивід на екран
+      for (const item of userArray) {
+        if (item > 100) document.write(`${item} <br>`)
+      }
+      // console.log(userArray)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

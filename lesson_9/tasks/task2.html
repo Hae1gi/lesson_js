@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <h1>Задача №2</h1>
+    <p>
+      Користувач вводить кількість елементів. Створити масив, у якому перша
+      половина заповнена 1-цями, а друга заповнена 7-ками.
+    </p>
+    <script>
+      // ===================================================================================//
+      // ВВІД ДАННИХ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const dataArray = new Array(userArrayLength)
+      // Визначення значення середни массиву
+      const middleMeaningArray = dataArray.length / 2
+
+      // Заповлення першої половину масиву 1
+      dataArray.fill(1, 0, middleMeaningArray)
+      // Заповлення першої половину масиву 2
+      dataArray.fill(2, middleMeaningArray)
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН
+      document.write(dataArray)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

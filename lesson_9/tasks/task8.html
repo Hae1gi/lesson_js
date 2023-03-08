@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №8</title>
+  </head>
+
+  <body>
+    <h1>Задача №8</h1>
+    <p>
+      Дано масив номерів авто. Сформувати новий масив тих, які починаються на
+      «А»
+    </p>
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації масииву
+      function getRandomNumberCarArray(lengthArray) {
+        let resultArray = new Array(lengthArray)
+        for (let i = 0; i < lengthArray; i++) {
+          let result
+          let randNum = 1 + Math.floor(Math.random() * 5)
+          switch (randNum) {
+            case 1:
+              result = 'BA2300BH'
+              break
+            case 2:
+              result = 'AA0000CH'
+              break
+            case 3:
+              result = 'CA0023HH'
+              break
+            case 4:
+              result = 'ANDREW'
+              break
+            default:
+              result = 'VICTOR'
+              break
+          }
+          resultArray[i] = result
+        }
+        return resultArray
+      }
+
+      // ===================================================================================//
+      // ВВІД ДОВЖИНИ МАСИВУ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getRandomNumberCarArray(userArrayLength)
+      const userArrayDefault = Array.from(userArray)
+      // ===================================================================================//
+      // Формування результату
+      const newUserArray = userArray.filter((element) => element[0] === 'A')
+      // ===================================================================================//
+      // ВИВІД РЕЗУЛЬТАТУ НА ЕКРАН
+      document.write(
+        `Початковий массив: ${userArrayDefault} <br> Массив з номерів які починаются на "А": ${newUserArray}`
+      )
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

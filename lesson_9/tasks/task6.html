@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №6</title>
+  </head>
+
+  <body>
+    <h1>Задача №6</h1>
+    <p>
+      Дано масив елементів. Усі елементи, які більші за перший елемент помножити
+      на 2
+    </p>
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації масииву
+      function getRandomArray(minV, maxV, lengthArray) {
+        let resultArray = new Array(lengthArray)
+        for (let i = 0; i < lengthArray; i++) {
+          let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          resultArray[i] = randNum
+        }
+        return resultArray
+      }
+
+      // ===================================================================================//
+      // ВВІД ДОВЖИНИ МАСИВУ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getRandomArray(-2, 2, userArrayLength)
+      const userArrayDefault = Array.from(userArray)
+      // ===================================================================================//
+      // Формування результату
+      userArray.forEach((element, index, arrRef) => {
+        if (element > arrRef[0]) arrRef[index] = arrRef[index] * 2
+      })
+
+      // ===================================================================================//
+      // ВИВІД РЕЗУЛЬТАТУ НА ЕКРАН
+      document.write(
+        `Початковий массив: ${userArrayDefault} <br> Результат: ${userArray}`
+      )
+      // console.log(userArray)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

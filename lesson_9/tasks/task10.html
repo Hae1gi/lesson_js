@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №10</title>
+  </head>
+
+  <body>
+    <h1>Задача №10</h1>
+    <p>
+      Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде
+      містити величину сплаченого податку у грн.
+    </p>
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації масииву
+      function getRandomArray(minV, maxV, lengthArray) {
+        let resultArray = new Array(lengthArray)
+        for (let i = 0; i < lengthArray; i++) {
+          let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          resultArray[i] = randNum
+        }
+        return resultArray
+      }
+
+      // ===================================================================================//
+      // ВВІД ДОВЖИНИ МАСИВУ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getRandomArray(800, 2000, userArrayLength)
+      const userArrayDefault = Array.from(userArray)
+      // ===================================================================================//
+      // Формую результат
+      const taxArray = userArray.map((element) => element / 6)
+      // Незнаю на скільки це вірно
+      taxArray.forEach((element, index, baseArrRef) => {
+        baseArrRef[index] = element.toFixed(2)
+      })
+      // ===================================================================================//
+      // Виводжу на екран
+      // console.log9()
+      document.write(
+        `Массив цін: ${userArrayDefault} <br> Массив сплачених податків: ${taxArray}`
+      )
+
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №5</title>
+  </head>
+
+  <body>
+    <h1>Задача №5</h1>
+    <p>Дано масив елементів. Знайти добуток додатних елементів</p>
+
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації масииву
+      function getRandomArray(minV, maxV, lengthArray) {
+        let resultArray = new Array(lengthArray)
+        for (let i = 0; i < lengthArray; i++) {
+          let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          resultArray[i] = randNum
+        }
+        return resultArray
+      }
+
+      // ===================================================================================//
+      // ВВІД ДАННИХ КОРИСТУВАЧЕМ
+      const userArrayLength = parseInt(prompt('Введіть довжину масиву'))
+      let sumResult = 1
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getRandomArray(-10, 10, userArrayLength)
+      // ===================================================================================//
+      // Формування результату
+      for (const item of userArray) {
+        if (item > 0) sumResult = sumResult * item
+      }
+      // ===================================================================================//
+      // ВИВІД РЕЗУЛЬТАТУ НА ЕКРАН
+      document.write(`Добуток усіх елементів массиву: ${sumResult}`)
+      // console.log(userArray)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>
