@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task1.html">Задача №1</a></h2>
+    <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до
+      10000)
+    </p>
+    <ol>
+      <li>
+        Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+      </li>
+      <li>
+        Сформувати новий масив, у якому є номери тільки тих, що більші за 1000
+        грн.
+      </li>
+      <li>Сформувати список з тих цін, які більші за попереднє значення</li>
+      <li>
+        Сформувати новий масив, що міститиме значення цін у відсотках стосовно
+        максимального
+      </li>
+      <li>Підрахувати кількість змін цін</li>
+      <li>Визначити, чи є ціна, що менше 1000</li>
+      <li>Визначати, чи усі ціни більше за 1000</li>
+      <li>Підрахувати кількість цін, що більше за 1000</li>
+      <li>Підрахувати суму цін, що більше за 1000</li>
+      <li>Знайти першу ціну, що більше за 1000</li>
+      <li>Знайти індекс першої ціни, що більше за 1000</li>
+      <li>Знайти останню ціну, що більше за 1000</li>
+      <li>Знайти індекс останньої ціни, що більше за 1000</li>
+    </ol>
+    <script>
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const arraySecurities = [
+        25, 5638, 958, 5569, 724, 1628, 2186, 6332, 1351, 6267, 9350, 7933,
+        7408, 5819, 9556, 9373, 1, 4763, 2880, 25, 2517,
+      ]
+      // ===================================================================================//
+      // 1)Формую новий масив, у якому є тільки ті, що більші за 1000 грн.
+      const onlyValuesBiggest1000 = arraySecurities.filter(
+        (element) => element >= 1000
+      )
+      // 2) Формую новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+      // const onlyNumberBiggest1000 = arraySecurities
+      //   .map((element, index) => {
+      //     if (element >= 1000) return index //Формирую массив из индексов
+      //   })
+      //   .filter((element) => element != undefined) // Удаляю indefinde
+      let onlyNumberBiggest1000 = arraySecurities.reduce(
+        (accumulator, curVal, curIndex) => {
+          if (curVal >= 1000) accumulator.push(curIndex)
+          return accumulator
+        },
+        []
+      )
+      // 3) Сформувати список з тих цін, які більші за попереднє значення
+      let lastElement = arraySecurities[0]
+      const listOfPricesLargeForPrevious = arraySecurities.reduce(
+        (acc, curVal, curIndex) => {
+          if (curVal > lastElement) acc.push(curVal)
+          lastElement = curVal
+          return acc
+        },
+        []
+      )
+      // 4) Формую новий масив,що містить значення ціни у відсотках стосовно максимального
+      const maxValue = Math.max(...arraySecurities)
+      const percentageArray = arraySecurities.map(
+        (element) => (element / (maxValue / 100)).toFixed(2) + '%'
+      )
+      // 5) Підраховую кількість змін кількість змін цін:
+      const numberOfChanges = arraySecurities.reduce(
+        (result, value, index, baseArrRef) => {
+          if (
+            baseArrRef[index + 1] !== value &&
+            baseArrRef[index + 1] !== undefined
+          )
+            result++
+          return result
+        },
+        0
+      )
+      // 6) Визначаю чи є ціна меньша за 1000:
+      const priceLow1000 = arraySecurities.some((el) => el < 1000)
+      // 7) Визначаю, чи усі ціни більше за 1000:
+      const pricebiggest1000 = arraySecurities.every((el) => el > 1000)
+      // 8) Підраховую кількість цін, що більше за 1000:
+      const quantityPricesBiggest1000 = arraySecurities.reduce(
+        (result, value) => {
+          if (value > 1000) result++
+          return result
+        },
+        0
+      )
+      // 9) Підраховую суму цін, що більше за 1000:
+      const sumPricesBiggest1000 = arraySecurities.reduce((acc, value) => {
+        if (value > 1000) acc += value
+        return acc
+      }, 0)
+      // 10) Знаходжу першу ціну, що більше за 1000:
+      const firstPricesBiggest1000 = arraySecurities.find((el) => el > 1000)
+      // 11) Знаходжу індекс першої ціни, що більше за 1000:
+      const firstIndexPricesBiggest1000 = arraySecurities.findIndex(
+        (el) => el > 1000
+      )
+      // 12) Знаходжу останню ціну, що більше за 1000:
+      const lastPricesBiggest1000 = arraySecurities.findLast((el) => el > 1000)
+      // 13) Знаходжу індекс останньої ціни, що більше за 1000:
+      const lastIndexPricesBiggest1000 = arraySecurities.findLastIndex(
+        (el) => el > 1000
+      )
+      // Пошук результату
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН'
+      document.write(`<ol>
+      	<p>${arraySecurities}</p>
+         <li>
+           Новий масив, у якому є тільки ті, що більші за 1000 грн: <br> ${onlyValuesBiggest1000}
+         </li>
+         <li>
+           Новий масив, у якому є номери тільки тих, що більші за 1000 грн:<br> ${onlyNumberBiggest1000}
+         </li>
+         <li>Список з тих цін, які більші за попереднє значення:<br> ${listOfPricesLargeForPrevious}</li>
+         <li>
+           Новий масив, що містить значення цін у відсотках стосовно максимального: <br>${percentageArray}
+         </li>
+         <li>Кількість змін цін:<br> ${numberOfChanges}</li>
+         <li>Ціни що менше 1000:<br> ${priceLow1000}</li>
+         <li>Чи усі ціни більше за 1000:<br> ${pricebiggest1000}</li>
+         <li>Кількість цін, що більше за 1000: <br>${quantityPricesBiggest1000}</li>
+         <li>Сума цін, що більше за 1000: <br>${sumPricesBiggest1000}</li>
+         <li>Перша ціна, що більше за 1000: <br>${firstPricesBiggest1000}</li>
+         <li>Індекс першої ціни, що більше за 1000: <br>${firstIndexPricesBiggest1000}</li>
+         <li>Остання ціна, що більше за 1000:<br>${lastPricesBiggest1000}</li>
+         <li>Індекс останньої ціни, що більше за 1000:<br>${lastIndexPricesBiggest1000}</li>
+       </ol>`)
+      // ===================================================================================//
+
+      // Cлужбові файли
+      // Функції
+      // Функція генерації массиву
+      // function getArraySecurities(quantity, minV, maxV) {
+      //   const result = new Array(quantity)
+      //   for (let i = 0; i < quantity; i++) {
+      //     let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+      //     result[i] = randNum
+      //   }
+      //   return result
+      // }
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      // const arraySecurities = getArraySecurities(20, 1, 10000)
+    </script>
+  </body>
+</html>
