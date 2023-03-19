@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task1.html">Задача №1</a></h2>
+    <p>
+      Морський бій. Випадковим чином на двовимірному полі розміром 6*6
+      розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра
+      продовжується поки не потоплено усі кораблі або у користувача не
+      закінчаться снаряди.
+    </p>
+    <script>
+      // ===================================================================================//
+      // Функція генерації випадкового числа
+      function getRandomNum(minV, maxV) {
+        return minV + Math.floor(Math.random() * (maxV - minV + 1))
+      }
+      // Функція генерації одновимірного масиву
+      function createGameArray(arrayLenght) {
+        return new Array(arrayLenght).fill(0)
+      }
+
+      // Функція генерації двовимірного масиву
+      function createGameTable(rowNumber, colomnNumber) {
+        let table = []
+        for (let r = 0; r < rowNumber; r++) {
+          let array = createGameArray(colomnNumber)
+          table.push(array)
+        }
+
+        return table
+      }
+      // Функція заповнення поля кораблями
+      function getGameFieldAndShips(rowNumber, colomnNumber, ships) {
+        let gameField = createGameTable(rowNumber, colomnNumber)
+        do {
+          let r
+          let c
+          do {
+            r = getRandomNum(0, 5)
+            c = getRandomNum(0, 5)
+          } while (gameField[r][c] === 1)
+          gameField[r][c] = 1
+          ships -= 1
+        } while (ships !== 0)
+        return gameField
+      }
+      //Перевірка наявності кораблів на полі
+      function getInfoOfShips(table) {
+        for (const row of table) {
+          if (row.includes(1) === true) return true
+        }
+        return false
+      }
+      // Фунцкція гри
+      function game(table, numberOfShells) {
+        let infoOfShips = true
+        for (let i = 0; i < numberOfShells && infoOfShips === true; i++) {
+          const userStrikeX = parseInt(
+            prompt('Введіть координати корабля по X')
+          )
+          const userStrikeY = parseInt(
+            prompt('Введіть координати корабля по Y')
+          )
+          if (table[userStrikeY][userStrikeX] === 1) {
+            alert('Влучання')
+            table[userStrikeY][userStrikeX] = 0
+          } else alert('Промазав')
+        }
+        infoOfShips = getInfoOfShips(table)
+      }
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const row = 6 // Кількість рядків
+      const column = 6 // Кількість стовпчиків
+      const qiantityShips = 5 // Кількість кораблів
+      const userArray = getGameFieldAndShips(row, column, qiantityShips) // Формування поля для гри
+      const numberOfShells = parseInt(prompt('Введіть кількість пострілів')) //Кількість спроб
+
+      // ===================================================================================//
+      const playGame = game(userArray, numberOfShells)
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН'
+      console.table(userArray)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

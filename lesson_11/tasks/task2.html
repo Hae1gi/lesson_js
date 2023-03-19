@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №2</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task1.html">Задача №2</a></h2>
+    <p>Дано інформацію про прибуток К магазинів протягом тижня. Знайти :</p>
+    <ol>
+      <li>загальний прибуток кожного магазину за тиждень;</li>
+      <li>
+        загальний прибуток усіх магазинів по дням (загальний прибуток усіх
+        магазинів за понеділок, за вівторок, і т.д.);
+      </li>
+      <li>загальний прибуток за робочі дні</li>
+      <li>загальний прибуток за вихідні дні</li>
+      <li>максимальний прибуток за середу</li>
+      <li>
+        сформувати загальний список (одновимірний масив) зі значенням, які що
+        більші за 200
+      </li>
+      <li>відсортувати кожен тиждень за зростанням</li>
+      <li>
+        відсортувати тижні (рядки) за спаданням максимального елементи у цьому
+        тижні (рядку), тобто при порівнянні рядків потрібно порівнювати
+        максимальні елементи у кожному з цих рядків
+      </li>
+      <li>
+        упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто
+        при порівнянні двох рядків треба знайти суму кожного з рядків і
+        порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+        повинен іти раніше).
+      </li>
+    </ol>
+    <script>
+      // ===================================================================================//
+      // Функція генерації випадкового числа
+      function getRandomNum(minV, maxV) {
+        return minV + Math.floor(Math.random() * (maxV - minV + 1))
+      }
+      // Функція генерації одновимірного масиву
+      function getArray(minV, maxV, arrayLenght) {
+        let array = []
+        for (let i = 0; i < arrayLenght; i++) {
+          let randNum = getRandomNum(minV, maxV)
+          array.push(randNum)
+        }
+        return array
+      }
+      // Функція генерації двовимірного масиву
+      function getTable(rowNumber, colomnNumber, minV, maxV) {
+        let table = []
+        for (let r = 0; r < rowNumber; r++) {
+          let array = getArray(minV, maxV, colomnNumber)
+          table.push(array)
+        }
+        return table
+      }
+      // Функція знаходження загального прибутку кожного магазину за тиждень
+      function getSumAtWeek(table) {
+        let result = []
+        for (let magazin = 0; magazin < table.length; magazin++) {
+          let sumAtWeek = table[magazin].reduce((prevSum, el) => prevSum + el)
+          result.push(sumAtWeek)
+        }
+        return result
+      }
+
+      // Функція знаходження загального прибутку по дням
+      function getSumAmountForEachDay(table) {
+        let result = []
+        for (let day = 0; day < 7; day++) {
+          let sumAmountForEachDay = 0
+          for (let magazin = 0; magazin < table.length; magazin++) {
+            sumAmountForEachDay += table[magazin][day]
+          }
+          result.push(sumAmountForEachDay)
+        }
+        return result
+      }
+      // Функція знаходження прибутку в заданому діапазоні
+      function getSumInTheGivenRange(table, startDay, endDay) {
+        let result = 0
+        for (let magazin = 0; magazin < table.length; magazin++) {
+          for (let day = startDay; day < endDay; day++) {
+            result += table[magazin][day]
+          }
+        }
+        return result
+      }
+      // Функція визначення максимального прибутку за заданний день
+      function getMaxValue(table, dayOfMaxValue) {
+        let maxValue = table[0][dayOfMaxValue]
+        for (let magazin = 1; magazin < table.length; magazin++) {
+          if (table[magazin][dayOfMaxValue] > maxValue)
+            maxValue = table[magazin][dayOfMaxValue]
+        }
+        return maxValue
+      }
+      // Функція визначення значень які більші за задане
+      function getValueIsGreater(table, greaterNumber) {
+        let result = []
+        for (const magazin of table) {
+          for (const day of magazin) {
+            if (day > greaterNumber) result.push(day)
+          }
+        }
+        return result
+      }
+      // Функція сортування за зростанням
+      function getSortAscending(table) {
+        let newTable = []
+        for (let magazin = 0; magazin < table.length; magazin++) {
+          let newArray = table[magazin].sort((el1, el2) => {
+            return el2 - el1
+          })
+          newTable.push(newArray)
+        }
+        return newTable
+      }
+      // ===================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const numberOfStores = 4
+      const DAY_OF_WEEK = 7
+      const userArray = getTable(numberOfStores, DAY_OF_WEEK, 10, 15)
+
+      // ===================================================================================//
+      // Знаходжу загальний прибуток кожного магазину за тиждень
+      const sumAtWeek = getSumAtWeek(userArray)
+      // Знаходжу загальний прибуток по дням
+      const sumAmountForEachDay = getSumAmountForEachDay(userArray)
+      // Знаходжу загальний прибуток за робочі дні
+      const amountForWorkingDays = getSumInTheGivenRange(userArray, 0, 5)
+      // Знаходжу загальний прибуток за вихідні дні
+      const amountForDayOff = getSumInTheGivenRange(userArray, 5, 7)
+      // Знаходжу максимальний прибуток за середу
+      const maxValue = getMaxValue(userArray, 2)
+      // Знаходжу прибуток який більший за 200
+      const valueIsGreater200 = getValueIsGreater(userArray, 200)
+      // Сортую кожен тиждень за зростанням
+      const sortsWeek = getSortAscending(userArray)
+      // Сортую за максимальним элементом
+      // el 1 и el2 фактически массивы
+      const sortMaxElement = sortsWeek.sort((el1, el2) => {
+        if (el1[0] < el2[0]) return 1
+        if (el1[0] > el2[0]) return -1
+        return 0
+      })
+      // Сортую за максимальною сумою
+      const sotrMaxSumArray = userArray.sort((el1, el2) => {
+        sumA = el1.reduce((prevSum, el) => prevSum + el)
+        sumB = el2.reduce((prevSum, el) => prevSum + el)
+        if (sumA < sumB) return 1
+        if (sumA > sumB) return -1
+        return 0
+      })
+
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН'
+      document.write(`
+      <p>Початковий массив</p>
+      <p>${userArray}</p>
+      <ol>
+      <li>загальний прибуток кожного масиву за тиждень:${sumAtWeek}</li>
+      <li>загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.): ${sumAmountForEachDay}</li>
+      <li>загальний прибуток за робочі дні:${amountForWorkingDays}</li>
+      <li>загальний прибуток за вихідні дні:${amountForDayOff}</li>
+      <li>максимальний прибуток за середу:${maxValue}</li>
+      <li>сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200:${valueIsGreater200}</li>
+      <li>відсортувати кожен тиждень за зростанням:${sortsWeek}</li>
+      <li>
+        відсортувати тижні (рядки) за спаданням максимального елементи у цьому
+        тижні (рядку), тобто при порівнянні рядків потрібно порівнювати
+        максимальні елементи у кожному з цих рядків: ${sortMaxElement}
+      </li>
+      <li>
+        упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто
+        при порівнянні двох рядків треба знайти суму кожного з рядків і
+        порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+        повинен іти раніше): ${sotrMaxSumArray}
+      </li>
+      </ol>`)
+      // ===================================================================================//
+
+      // const userArray = [
+      //   //ПН ВТ СР ЧТ ПТ СБ ВС
+      //   // 0  1  2  3  4  5  6 column (прибуток за тиждень)
+      //   [5, 5, 5, 5, 5, 5, 5], // 0  row (Магазин №1)
+      //   [100, 100, 100, 100, 100, 100, 100], // 1  row (Магазин №2)
+      //   [10, 10, 10, 10, 10, 10, 10], // 2  row (Магазин №3)
+      //   [1, 1, 1, 1, 1, 1, 1], // 3  row (Магазин №4)
+      // ]
+    </script>
+  </body>
+</html>

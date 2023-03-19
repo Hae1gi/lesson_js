@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №1</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task1.html">Задача №1</a></h2>
+    <p>Знайти суми елементів у вказаній області</p>
+    <ol>
+      <li><img src="../img/exmp1.jpg" /></li>
+      <li><img src="../img/exmp2.jpg" /></li>
+      <li><img src="../img/exmp3.jpg" /></li>
+      <li><img src="../img/exmp4.jpg" /></li>
+      <li>Суму парних рядків</li>
+      <li>Суму непарних стовпців</li>
+      <li>У парних рядках – непарні стовпці, у непарних – парні.</li>
+    </ol>
+    <script>
+      // ===================================================================================//
+      // Функції
+      // Функція генерації одновимірного масиву
+      function getRandomArray(minV, maxV, arraylenght) {
+        let array = []
+        for (let i = 0; i < arraylenght; i++) {
+          let randNum = minV + Math.floor(Math.random() * (maxV - minV + 1))
+          array.push(randNum)
+        }
+        return array
+      }
+      // Функція генерації двохвимірного масиву
+      function getTable(colomnNumber, rowNumber, minV, maxV) {
+        let table = []
+        for (let i = 0; i < rowNumber; i++) {
+          tableRow = getRandomArray(minV, maxV, colomnNumber)
+          table.push(tableRow)
+        }
+        return table
+      }
+      // Функція генерації сумми у виділенній області
+      function getSumSelectedArea(
+        table,
+        initialValueRowNumber,
+        finalValueRowNumber,
+        initialValueColomnNumber,
+        finalValueColomnNumber
+      ) {
+        let sum = 0
+        for (let r = initialValueRowNumber; r < finalValueRowNumber; r++) {
+          for (
+            let c = initialValueColomnNumber;
+            c < finalValueColomnNumber;
+            c++
+          ) {
+            sum += table[r][c]
+          }
+        }
+        return sum
+      }
+      // Функція генерації суми у деяких рядках та колонках
+      // Костыль в вигляді modulo
+      function getSumSomeRowAndColumn(table, modulo) {
+        let sum = 0
+        for (let r = 0; r < table.length; r++) {
+          if (r % 2 == modulo)
+            for (let c = 0; c < table[r].length; c++) {
+              sum += table[r][c]
+            }
+        }
+        return sum
+      }
+      function getSumThroughOne(table) {
+        let sum = 0
+        for (let r = 0; r < table.length; r++) {
+          for (let c = 0; c < table[r].length; c++) {
+            if ((r % 2 == 0 && c % 2 == 1) || (r % 2 == 1 && c % 2 == 0))
+              sum += table[r][c]
+          }
+        }
+        return sum
+      }
+      // ==================================================================================//
+      // СТВОРЕННЯ МАСИВУ ДВОХВИМІРНОГО МАСИВУ
+      const minValue = 1
+      const maxValue = 10
+      const colomnNumber = 4 //Кількість колонок
+      const rowNumber = 4 //Кількість рядочків
+      const userArray = getTable(colomnNumber, rowNumber, minValue, maxValue)
+      // ===================================================================================//
+      // Половина рядочку
+      const halfArrayRow = Math.floor(userArray.length / 2)
+      // Половина колонок (Для прямокутного масиву)
+      const halfArrayColumns = Math.floor(userArray[0].length / 2)
+      const arrayStartNumber = 0
+      // Знаходжу суму у першій чверті
+      const sumFirstQuarter = getSumSelectedArea(
+        userArray,
+        arrayStartNumber,
+        halfArrayRow,
+        arrayStartNumber,
+        halfArrayColumns
+      )
+      // Знаходжу суму у другій чверті
+      const sumSecondQuarter = getSumSelectedArea(
+        userArray,
+        arrayStartNumber,
+        halfArrayRow,
+        halfArrayColumns,
+        colomnNumber
+      )
+
+      // Знаходжу суму у третій чверті
+      const sumThirdQuarter = getSumSelectedArea(
+        userArray,
+        halfArrayRow,
+        rowNumber,
+        arrayStartNumber,
+        halfArrayColumns
+      )
+      // Знаходжу суму у четвертій чверті
+      const sumFourthQuarter = getSumSelectedArea(
+        userArray,
+        halfArrayRow,
+        rowNumber,
+        halfArrayColumns,
+        colomnNumber
+      )
+      // Знаходжу суму паних рядків modulo = 0 - парні
+      const sumEvenNumber = getSumSomeRowAndColumn(userArray, 0)
+      // Знаходжу суму паних рядків modulo = 1 - непарні
+      const sumOddNumber = getSumSomeRowAndColumn(userArray, 1)
+      // Знаходження суми  у парних рядках – непарні стовпці, у непарних – парні
+      const sumThroughOne = getSumThroughOne(userArray)
+
+      // Я чомусь впевненный що напевно це все можно записати як одну функцію
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН'
+      document.write(`
+      <p>Початковий массив</p>
+      <p>${userArray}</p>
+      <ol>
+      <li>Суму у першій чверті: ${sumFirstQuarter}</li>
+      <li>Суму у другій чверті: ${sumSecondQuarter}</li>
+      <li>Суму у третій чверті: ${sumThirdQuarter}</li>
+      <li>Суму у четвертій чверті: ${sumFourthQuarter}</li>
+      <li>Суму парних рядків:${sumEvenNumber}</li>
+      <li>Суму непарних стовпців:${sumOddNumber}</li>
+      <li>Cумму у парних рядках – непарні стовпці, у непарних – парні:${sumThroughOne}</li>
+       </ol>`)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>
