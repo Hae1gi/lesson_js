@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №3</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task1.html">Задача №1</a></h2>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під
+      час сортування включеннями.
+    </p>
+    <script>
+      // ===================================================================================//
+      // Функція генерації випадкового числа
+      function getRandomNum(minV, maxV) {
+        return minV + Math.floor(Math.random() * (maxV - minV + 1))
+      }
+      // Функція генерації одновимірного масиву
+      function getArray(minV, maxV, arrayLenght) {
+        let array = []
+        for (let i = 0; i < arrayLenght; i++) {
+          let randNum = getRandomNum(minV, maxV)
+          array.push(randNum)
+        }
+        return array
+      }
+      // Алгоритм сортування
+      function insertSort(array) {
+        let key, i
+        let counter = 0
+        for (let k = 1; k < array.length; k++) {
+          key = array[k]
+          i = k - 1
+          while (i >= 0 && array[i] > key) {
+            array[i + 1] = array[i]
+            i = i - 1
+            counter++
+          }
+          array[i + 1] = key
+          counter++ // ?
+        }
+        return counter
+      }
+      // ==================================================================================//
+      // СТВОРЕННЯ МАСИВУ
+      const userArray = getArray(1, 10, 30)
+      // const userArray = [
+      //   2, 7, 4, 5, 6, 8, 6, 2, 2, 7, 5, 3, 5, 9, 3, 10, 8, 1, 2, 10, 1, 9, 7,
+      //   3, 2, 4, 2, 5, 6, 1,
+      // ]
+      // ===================================================================================//
+      const counterNumber = insertSort(userArray)
+      // ===================================================================================//
+      // ВИВОДЖУ РЕЗУЛЬТАТ НА ЭКРАН'
+      // console.log(userArray)
+      document.write(counterNumber)
+      // ===================================================================================//
+    </script>
+  </body>
+</html>

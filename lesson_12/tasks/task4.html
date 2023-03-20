@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача №4</title>
+  </head>
+
+  <body>
+    <h2><a href="./tasks/task4.html">Задача №4</a></h2>
+    <p>
+      Для розглянутих методів сортування спробувати вивести етапи сортування
+      шляхом виведення відповідних таблиць за зразком.
+    </p>
+    <img src="../img/task4.jpg" />
+    <p>
+      Тобто кожного разу після обміну елементів вивести поточний стан масиву на
+      екран.
+    </p>
+    <script>
+      // Трохи би більше приколадів на уроках з виводу данних, тому що ніяк окрім документ райт в функцію без ретурна я не придумав.
+      // ==================================================================================//
+      // СТВОРЕННЯ ПОЧАТКОВОГО МАСИВУ
+      const userArray = getArray(1, 10, 5)
+      // Сортування бульбашкою по етапно
+      let userArrayBuble = Array.from(userArray)
+      // Сортування зміщуванням по етапно
+      let userArrayCoctail = Array.from(userArray)
+      // Сортування включенням по етапно
+      let userArrayInsert = Array.from(userArray)
+      // ===================================================================================//
+      // Функції
+      // Функція генерації випадкового числа
+      function getRandomNum(minV, maxV) {
+        return minV + Math.floor(Math.random() * (maxV - minV + 1))
+      }
+      // Функція генерації одновимірного масиву
+      function getArray(minV, maxV, arrayLenght) {
+        let array = []
+        for (let i = 0; i < arrayLenght; i++) {
+          let randNum = getRandomNum(minV, maxV)
+          array.push(randNum)
+        }
+        return array
+      }
+      document.write(`
+          <p>Початковий массив</p>
+          <p>${userArray}</p>`)
+      // Алгоритм сортування бульбошкою
+      document.write(`<h2>Сортування бульбашкою</h2>`)
+      function sortBuble(array) {
+        let changed
+        //   let result = [[...array]]
+        do {
+          changed = false
+          for (let i = 1; i < array.length; i++) {
+            if (array[i - 1] > array[i]) {
+              let temp = array[i - 1]
+              array[i - 1] = array[i]
+              array[i] = temp
+              changed = true
+              document.write(`[${array}] <br>`)
+              //   result.push([...arr])   // Незрозумів як вивести то все що я напушив по людьски у вигляді таблиці. Хіба cлайсом нарізати
+            }
+          }
+        } while (changed)
+        return array
+      }
+      sortBuble(userArrayBuble)
+      // Алгоритм сортування змішуванням
+      document.write(`<h2>Сортування змішуванням</h2>`)
+      const change = (array, i, j) => {
+        const acc = array[i]
+        array[i] = array[j]
+        array[j] = acc
+      }
+
+      function sortCoctail(array) {
+        let leftIndex = 0
+        let rightIndex = array.length - 1
+
+        while (leftIndex < rightIndex) {
+          for (let index = leftIndex; index < rightIndex; index++) {
+            if (array[index] > array[index + 1]) {
+              change(array, index, index + 1)
+              document.write(`[${array}] <br>`)
+            }
+          }
+          rightIndex--
+
+          for (let index = rightIndex; index > leftIndex; index--) {
+            if (array[index] < array[index - 1]) {
+              change(array, index, index - 1)
+              document.write(`[${array}] <br>`)
+            }
+          }
+          leftIndex++
+        }
+
+        return array
+      }
+      sortCoctail(userArrayCoctail)
+      // Алгоритм сортування включенням
+      document.write(`<h2>Сортування включенням</h2>`)
+      function insertSort(array) {
+        let key, i
+        for (let k = 1; k < array.length; k++) {
+          key = array[k]
+          i = k - 1
+          while (i >= 0 && array[i] > key) {
+            array[i + 1] = array[i]
+            i = i - 1
+            document.write(`[${array}] <br>`)
+          }
+          array[i + 1] = key
+          document.write(`[${array}] <br>`)
+        }
+        return array
+      }
+      insertSort(userArrayInsert)
+    </script>
+  </body>
+</html>
